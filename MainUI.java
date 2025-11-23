@@ -79,7 +79,80 @@ public class MainUI {
         f.setVisible(true);
     }
 
-    
+    private void showSignup() {
+        JFrame f = new JFrame("Register");
+        f.setSize(400, 400);
+        f.setLocationRelativeTo(null);
+        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        f.setLayout(null); 
+
+        JLabel l0 = new JLabel("Role:");
+        l0.setBounds(50, 30, 80, 25);
+        f.add(l0);
+
+        String[] r = {"student", "instructor", "admin"};
+        JComboBox<String> roles = new JComboBox<>(r);
+        roles.setBounds(140, 30, 150, 25);
+        f.add(roles);
+
+        JLabel l1 = new JLabel("Username:");
+        l1.setBounds(50, 70, 80, 25);
+        f.add(l1);
+        JTextField user = new JTextField();
+        user.setBounds(140, 70, 200, 25);
+        f.add(user);
+
+        JLabel l2 = new JLabel("Email:");
+        l2.setBounds(50, 110, 80, 25);
+        f.add(l2);
+        JTextField email = new JTextField();
+        email.setBounds(140, 110, 200, 25);
+        f.add(email);
+
+        JLabel l3 = new JLabel("Password:");
+        l3.setBounds(50, 150, 80, 25);
+        f.add(l3);
+        JPasswordField pass = new JPasswordField();
+        pass.setBounds(140, 150, 200, 25);
+        f.add(pass);
+
+        JButton create = new JButton("Sign Up");
+        create.setBounds(140, 200, 100, 30);
+        f.add(create);
+
+        JButton back = new JButton("Back");
+        back.setBounds(140, 240, 100, 30);
+        f.add(back);
+
+        create.addActionListener(e -> {
+            String role = (String) roles.getSelectedItem();
+            boolean success = false;
+            String pHash = HashUtil.sha256(new String(pass.getPassword()));
+
+            if(role.equals("student")) success = auth.signupStudent(user.getText(), email.getText(), new String(pass.getPassword()));
+            else if(role.equals("instructor")) success = auth.signupInstructor(user.getText(), email.getText(), new String(pass.getPassword()));
+            else {
+                Admin a = new Admin(user.getText(), email.getText(), pHash);
+                success = db.addUser(a);
+            }
+
+            if(success) {
+                JOptionPane.showMessageDialog(f, "Account created! Please login.");
+                f.dispose();
+                showLogin();
+            } else {
+                JOptionPane.showMessageDialog(f, "Error: Email might be taken.");
+            }
+        });
+
+        back.addActionListener(e -> {
+            f.dispose();
+            showLogin();
+        });
+
+        f.setVisible(true);
+    }
+
     public static void main(String[] args) {
         new MainUI();
     }
