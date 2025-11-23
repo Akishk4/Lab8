@@ -122,5 +122,24 @@ public class StudentDashboard {
         frame.setVisible(true);
     }
 
-   
+    public void refresh() {
+        myCoursesModel.clear();
+        catalogModel.clear();
+        certModel.clear();
+
+        java.util.List<Course> all = db.listAllCourses();
+        for(Course c : all) {
+            if("APPROVED".equals(c.getStatus())) {
+                if(student.getEnrolledCourseIds().contains(c.getCourseId())) {
+                    myCoursesModel.addElement(c);
+                } else {
+                    catalogModel.addElement(c);
+                }
+            }
+        }
+
+        for(String s : student.getCertificates()) {
+            certModel.addElement(s);
+        }
+    }
 }
