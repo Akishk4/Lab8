@@ -55,4 +55,19 @@ public class Course {
     public List<String> getStudentIds() {
         return studentIds;
     }
+        public void addLesson(Lesson l) {
+        if (l != null) {
+            lessons.add(l);
+        }
+    }
+
+    public void enrollStudent(String studentId) {
+        if (!studentIds.contains(studentId)) {
+            studentIds.add(studentId);
+        }
+    }
+
+    public String toString() {
+        return title + " [" + status + "]";
+    }
 }
