@@ -83,7 +83,21 @@ public class LessonViewer {
         f.setVisible(true);
     }
 
- 
+    private void doQuiz(JFrame p, Lesson l) {
+        Quiz q = l.getQuiz();
+        int score = 0;
+        
+        for(Question ques : q.getQuestions()) {
+            String[] opts = ques.getOptions().toArray(new String[0]);
+            int choice = JOptionPane.showOptionDialog(p, ques.getQuestionText(), "Quiz", 
+                    JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, opts, opts[0]);
+            if(choice == ques.getCorrectOptionIndex()) score++;
+        }
+        
+        student.addQuizScore(l.getLessonId(), score);
+        db.updateUser(student);
+        JOptionPane.showMessageDialog(p, "Quiz Score: " + score);
+    }
 
     private void checkForCert(JFrame p) {
         boolean doneAll = true;
