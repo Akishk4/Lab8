@@ -87,12 +87,57 @@ public class JsonDatabaseManager {
         }
     }
 
-   
+    public void saveUsers() {
+        JSONArray arr = new JSONArray();
+        for (User u : usersById.values()) {
+            JSONObject o = new JSONObject();
+            o.put("userId", u.getUserId());
+            o.put("role", u.getRole());
+            o.put("username", u.getUsername());
+            o.put("email", u.getEmail());
+            o.put("passwordHash", u.getPasswordHash());
 
- 
-  
-   
- 
+            if (u instanceof Student) {
+                Student s = (Student) u;
+                o.put("enrolledCourseIds", new JSONArray(s.getEnrolledCourseIds()));
+                o.put("certificates", new JSONArray(s.getCertificates()));
+                o.put("quizScores", new JSONObject(s.getQuizScores()));
+            } else if (u instanceof Instructor) {
+                Instructor ins = (Instructor) u;
+                o.put("createdCourseIds", new JSONArray(ins.getCreatedCourseIds()));
+            }
+            arr.put(o);
+        }
+        
+        try (FileWriter fw = new FileWriter(USERS_FILE)) {
+            fw.write(arr.toString(4));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public boolean addUser(User u) {
+        if (findUserByEmail(u.getEmail()) != null) return false;
+        usersById.put(u.getUserId(), u);
+        saveUsers();
+        return true;
+    }
+
+    public User findUserByEmail(String email) {
+        for (User u : usersById.values()) {
+            if (u.getEmail().equalsIgnoreCase(email)) return u;
+        }
+        return null;
+    }
+    
+    public User findUserById(String id) {
+        return usersById.get(id);
+    }
+    
+    public void updateUser(User u) {
+        usersById.put(u.getUserId(), u);
+        saveUsers();
+    }
 
 
     private void loadCourses() {
@@ -203,13 +248,22 @@ public class JsonDatabaseManager {
         }
     }
 
-   
+    public void addCourse(Course c) {
+        coursesById.put(c.getCourseId(), c);
+        saveCourses();
+    }
 
-   
+    public void updateCourse(Course c) {
+        coursesById.put(c.getCourseId(), c);
+        saveCourses();
+    }
     
     public void deleteCourse(String id) {
         coursesById.remove(id);
         saveCourses();
     }
 
+    public List<Course> listAllCourses() {
+        return new ArrayList<>(coursesById.values());
+    }
 }
