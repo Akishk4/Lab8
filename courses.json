@@ -1,0 +1,93 @@
+[
+    {
+        "courseId": "course-java-101",
+        "title": "CS101: Introduction to Java",
+        "description": "A comprehensive guide to object-oriented programming using Java. Perfect for beginners.",
+        "instructorId": "inst-cs-01",
+        "status": "APPROVED",
+        "studentIds": [
+            "stud-001"
+        ],
+        "lessons": [
+            {
+                "lessonId": "lesson-java-1",
+                "title": "1. Variables & Data Types",
+                "content": "Java is a strongly typed language. This means every variable must have a declared type.\n\nCommon types:\n- int (Integers)\n- double (Decimals)\n- boolean (True/False)\n- String (Text)",
+                "quiz": {
+                    "questions": [
+                        {
+                            "questionText": "Which data type is best for storing a name?",
+                            "options": [
+                                "int",
+                                "String"
+                            ],
+                            "correctOptionIndex": 1
+                        }
+                    ]
+                }
+            },
+            {
+                "lessonId": "lesson-java-2",
+                "title": "2. Loops and Logic",
+                "content": "Control flow allows your program to make decisions.\n\nExample:\nif (x > 5) {\n  System.out.println('Big number');\n}",
+                "quiz": {
+                    "questions": [
+                        {
+                            "questionText": "Which keyword is used for a loop?",
+                            "options": [
+                                "for",
+                                "if"
+                            ],
+                            "correctOptionIndex": 0
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "courseId": "course-calc-101",
+        "title": "MATH101: Calculus I",
+        "description": "Understanding limits, derivatives, and integrals.",
+        "instructorId": "inst-math-01",
+        "status": "APPROVED",
+        "studentIds": [],
+        "lessons": [
+            {
+                "lessonId": "lesson-calc-1",
+                "title": "Introduction to Limits",
+                "content": "A limit tells us the value that a function approaches as that function's input approaches some value.",
+                "quiz": {
+                    "questions": [
+                        {
+                            "questionText": "The limit of 1/x as x approaches infinity is:",
+                            "options": [
+                                "Infinity",
+                                "0"
+                            ],
+                            "correctOptionIndex": 1
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "courseId": "course-python-adv",
+        "title": "CS202: Advanced Python AI",
+        "description": "Deep learning, Neural Networks, and Data Science with Python.",
+        "instructorId": "inst-cs-01",
+        "status": "PENDING",
+        "studentIds": [],
+        "lessons": [
+            {
+                "lessonId": "lesson-py-1",
+                "title": "Neural Networks",
+                "content": "Neural networks mimic the human brain to recognize patterns in data.",
+                "quiz": {
+                    "questions": []
+                }
+            }
+        ]
+    }
+]

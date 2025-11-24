@@ -1,0 +1,54 @@
+[
+    {
+        "userId": "admin-001",
+        "role": "admin",
+        "username": "System Admin",
+        "email": "admin@skillforge.com",
+        "passwordHash": "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92"
+    },
+    {
+        "userId": "inst-cs-01",
+        "role": "instructor",
+        "username": "Dr. Alan Turing",
+        "email": "turing@skillforge.com",
+        "passwordHash": "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92",
+        "createdCourseIds": [
+            "course-java-101",
+            "course-python-adv"
+        ]
+    },
+    {
+        "userId": "inst-math-01",
+        "role": "instructor",
+        "username": "Prof. Maryam Mirzakhani",
+        "email": "maryam@skillforge.com",
+        "passwordHash": "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92",
+        "createdCourseIds": [
+            "course-calc-101"
+        ]
+    },
+    {
+        "userId": "stud-001",
+        "role": "student",
+        "username": "John Doe",
+        "email": "john@student.com",
+        "passwordHash": "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92",
+        "enrolledCourseIds": [
+            "course-java-101"
+        ],
+        "quizScores": {
+            "lesson-java-1": 1
+        },
+        "certificates": []
+    },
+    {
+        "userId": "stud-002",
+        "role": "student",
+        "username": "Sarah Smith",
+        "email": "sarah@student.com",
+        "passwordHash": "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92",
+        "enrolledCourseIds": [],
+        "quizScores": {},
+        "certificates": []
+    }
+]
